@@ -41,8 +41,9 @@ def index(request):
         except ParseError:
             return HttpResponseBadRequest('Invalid XML Data')
         message = wechat.get_message()
+        response = wechat.response_text(u'感谢您的关注！')
         if message.type == 'text':
             response = wechat.response_text(u'^_^')
-            return HttpResponse(response, content_type = "application/xml")
+        return HttpResponse(response, content_type = "application/xml")
     else:
         return HttpResponse('')
